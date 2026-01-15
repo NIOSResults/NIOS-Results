@@ -111,11 +111,11 @@ National Institute of Open Schooling (NIOS)
     <div class="box">
         <div class="box-top orange">
             <h2>Public Examination Result</h2>
-            <p>Result Declared – Sr Secondary & Secondary</p>
+            <p>Result Declared – Senior Secondary & Secondary</p>
             <div class="year">2025</div>
         </div>
         <div class="box-bottom">
-            <button class="btn" onclick="openForm()">Check Result</button>
+            <button class="btn" onclick="openPublic()">Check Result</button>
         </div>
     </div>
 
@@ -126,27 +126,29 @@ National Institute of Open Schooling (NIOS)
             <div class="year">2025</div>
         </div>
         <div class="box-bottom">
-            <button class="btn">Check Result</button>
+            <button class="btn" onclick="openOnDemand()">Check Result</button>
         </div>
     </div>
 
     <div class="box">
         <div class="box-top blue">
-            <h2>Recheck / Reval Result Details</h2>
+            <h2>Recheck / Revaluation Result Details</h2>
         </div>
         <div class="box-bottom">
-            <button class="btn">View Details</button>
+            <button class="btn" onclick="openRecheck()">View Details</button>
         </div>
     </div>
 
 </div>
 
-<!-- ROLL FORM -->
+<!-- PUBLIC RESULT FORM -->
 <div class="container hidden" id="form">
-    <h2>Check Result</h2>
+    <h2>Check Public Examination Result</h2>
     <input type="text" id="roll" placeholder="Enter Roll Number">
-    <p><b>Human Check:</b> 5 + 5 = ?</p>
+
+    <p><b>Human Verification:</b> <span id="question"></span></p>
     <input type="text" id="sum" placeholder="Enter Answer">
+
     <button class="btn" onclick="showResult()">Submit</button>
     <div class="error" id="error"></div>
 </div>
@@ -204,27 +206,66 @@ National Institute of Open Schooling (NIOS)
     <div class="pass">RESULT : PASS</div>
 </div>
 
+<!-- ON DEMAND -->
+<div class="container hidden" id="ondemand">
+    <h2>On Demand Examination Result</h2>
+    <p>The On Demand Examination results are currently not available.</p>
+    <p>Please visit the portal again later for updates.</p>
+</div>
+
+<!-- RECHECK -->
+<div class="container hidden" id="recheck">
+    <h2>Recheck / Revaluation</h2>
+    <p>Rechecking and Revaluation results will be published shortly.</p>
+    <p>Please check back later.</p>
+</div>
+
 <script>
-function openForm(){
-    document.getElementById("home").classList.add("hidden");
+let correctAnswer = 0;
+
+function hideAll(){
+    ["home","form","result","ondemand","recheck"].forEach(id=>{
+        document.getElementById(id).classList.add("hidden");
+    });
+}
+
+function generateSum(){
+    let a = Math.floor(Math.random()*90)+10; // 10–99
+    let b = Math.floor(Math.random()*90)+10;
+    correctAnswer = a + b;
+    document.getElementById("question").innerText = a + " + " + b + " = ?";
+}
+
+function openPublic(){
+    hideAll();
     document.getElementById("form").classList.remove("hidden");
+    generateSum();
+}
+
+function openOnDemand(){
+    hideAll();
+    document.getElementById("ondemand").classList.remove("hidden");
+}
+
+function openRecheck(){
+    hideAll();
+    document.getElementById("recheck").classList.remove("hidden");
 }
 
 function showResult(){
-    let roll=document.getElementById("roll").value;
-    let sum=document.getElementById("sum").value;
+    let roll = document.getElementById("roll").value;
+    let sum = document.getElementById("sum").value;
 
-    if(roll==="25649258" && sum==="10"){
-        document.getElementById("form").classList.add("hidden");
+    if(roll==="25649258" && Number(sum)===correctAnswer){
+        hideAll();
         document.getElementById("result").classList.remove("hidden");
     }else{
-        document.getElementById("error").innerHTML="Wrong Roll Number or Sum!";
+        document.getElementById("error").innerText =
+        "Incorrect Roll Number or Human Verification answer.";
+        generateSum();
     }
 }
 </script>
 
 </body>
 </html>
-
-
-
