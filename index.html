@@ -5,265 +5,174 @@
 <title>NIOS Official Results 2025</title>
 
 <style>
-body{
-    margin:0;
-    font-family: Arial, sans-serif;
-    background:#f2f2f2;
-}
-.header{
-    background:#ffffff;
-    padding:15px;
-    font-size:22px;
-    font-weight:bold;
-    color:#0a4fa3;
-    border-bottom:3px solid #0a4fa3;
-}
-.wrapper{
-    max-width:1200px;
-    margin:40px auto;
-    display:flex;
-    gap:25px;
-}
-.box{
-    flex:1;
-    border-radius:8px;
-    overflow:hidden;
-    box-shadow:0 4px 10px rgba(0,0,0,0.15);
-}
-.box-top{
-    padding:25px;
-    color:#fff;
-    min-height:260px;
-}
-.orange{ background:#ff7b66; }
-.green{ background:#45d57c; }
-.blue{ background:#2aa7c9; }
-
-.year{
-    font-size:60px;
-    opacity:0.3;
-    font-weight:bold;
-}
-
-.box-bottom{
-    background:#fff;
-    padding:20px;
-    text-align:center;
-}
-.btn{
-    padding:10px 18px;
-    background:#0a4fa3;
-    color:#fff;
-    border:none;
-    cursor:pointer;
-    border-radius:4px;
-}
-
-.hidden{ display:none; }
-
-.container{
-    max-width:900px;
-    background:#fff;
-    margin:30px auto;
-    padding:25px;
-    border-radius:6px;
-}
-
-input{
-    width:100%;
-    padding:10px;
-    margin:10px 0;
-}
-
-table{
-    width:100%;
-    border-collapse:collapse;
-}
-table, th, td{
-    border:1px solid #000;
-}
-th, td{
-    padding:8px;
-    text-align:center;
-}
-th{ background:#e6e6e6; }
-
-.pass{
-    text-align:center;
-    font-size:18px;
-    color:green;
-    font-weight:bold;
-    margin-top:15px;
-}
-.error{ color:red; }
+body{margin:0;font-family:Arial,sans-serif;background:#f2f2f2}
+.header{background:#fff;padding:15px;font-size:22px;font-weight:bold;color:#0a4fa3;border-bottom:3px solid #0a4fa3}
+.wrapper{max-width:1200px;margin:40px auto;display:flex;gap:25px}
+.box{flex:1;border-radius:8px;overflow:hidden;box-shadow:0 4px 10px rgba(0,0,0,.15)}
+.box-top{padding:25px;color:#fff;min-height:260px}
+.orange{background:#ff7b66}
+.green{background:#45d57c}
+.blue{background:#2aa7c9}
+.year{font-size:60px;opacity:.3;font-weight:bold}
+.box-bottom{background:#fff;padding:20px;text-align:center}
+.btn{padding:10px 18px;background:#0a4fa3;color:#fff;border:none;cursor:pointer;border-radius:4px}
+.hidden{display:none}
+.container{max-width:900px;background:#fff;margin:30px auto;padding:25px;border-radius:6px}
+input{width:100%;padding:10px;margin:10px 0}
+table{width:100%;border-collapse:collapse}
+table,th,td{border:1px solid #000}
+th,td{padding:8px;text-align:center}
+th{background:#e6e6e6}
+.pass{text-align:center;font-size:18px;color:green;font-weight:bold;margin-top:15px}
+.error{color:red}
 </style>
 </head>
 
 <body>
 
-<div class="header">
-National Institute of Open Schooling (NIOS)
-</div>
+<div class="header">National Institute of Open Schooling (NIOS)</div>
 
 <!-- HOME -->
 <div class="wrapper" id="home">
-
-    <div class="box">
-        <div class="box-top orange">
-            <h2>Public Examination Result</h2>
-            <p>Result Declared – Senior Secondary & Secondary</p>
-            <div class="year">2025</div>
-        </div>
-        <div class="box-bottom">
-            <button class="btn" onclick="openPublic()">Check Result</button>
-        </div>
+  <div class="box">
+    <div class="box-top orange">
+      <h2>Public Examination Result</h2>
+      <p>Senior Secondary & Secondary</p>
+      <div class="year">2025</div>
     </div>
-
-    <div class="box">
-        <div class="box-top green">
-            <h2>On Demand Examination Result</h2>
-            <p>Secondary & Senior Secondary</p>
-            <div class="year">2025</div>
-        </div>
-        <div class="box-bottom">
-            <button class="btn" onclick="openOnDemand()">Check Result</button>
-        </div>
+    <div class="box-bottom">
+      <button class="btn" onclick="openPublic()">Check Result</button>
     </div>
+  </div>
 
-    <div class="box">
-        <div class="box-top blue">
-            <h2>Recheck / Revaluation Result Details</h2>
-        </div>
-        <div class="box-bottom">
-            <button class="btn" onclick="openRecheck()">View Details</button>
-        </div>
+  <div class="box">
+    <div class="box-top green">
+      <h2>On Demand Examination Result</h2>
+      <p>Secondary & Senior Secondary</p>
+      <div class="year">2025</div>
     </div>
+    <div class="box-bottom">
+      <button class="btn" onclick="openOnDemand()">Check Result</button>
+    </div>
+  </div>
 
+  <div class="box">
+    <div class="box-top blue">
+      <h2>Recheck / Revaluation</h2>
+    </div>
+    <div class="box-bottom">
+      <button class="btn" onclick="openRecheck()">View Details</button>
+    </div>
+  </div>
 </div>
 
-<!-- PUBLIC RESULT FORM -->
+<!-- FORM -->
 <div class="container hidden" id="form">
-    <h2>Check Public Examination Result</h2>
-    <input type="text" id="roll" placeholder="Enter Roll Number">
-
-    <p><b>Human Verification:</b> <span id="question"></span></p>
-    <input type="text" id="sum" placeholder="Enter Answer">
-
-    <button class="btn" onclick="showResult()">Submit</button>
-    <div class="error" id="error"></div>
+  <h2>Check Public Examination Result</h2>
+  <input id="roll" placeholder="Enter Roll Number">
+  <p><b>Human Verification:</b> <span id="question"></span></p>
+  <input id="sum" placeholder="Enter Answer">
+  <button class="btn" onclick="showResult()">Submit</button>
+  <div class="error" id="error"></div>
 </div>
 
 <!-- RESULT -->
 <div class="container hidden" id="result">
-    <h2 style="text-align:center;">Senior Secondary Examination Result</h2>
-    <p><b>Name:</b> MANPRIT PAL</p>
-    <p><b>Roll No:</b> 25649258</p>
+  <h2 style="text-align:center">Senior Secondary Examination Result</h2>
+  <p><b>Name:</b> <span id="rname"></span></p>
+  <p><b>Roll No:</b> <span id="rroll"></span></p>
 
-    <table>
-        <tr>
-            <th>Code</th>
-            <th>Subject</th>
-            <th>Max</th>
-            <th>Theory</th>
-            <th>Practical</th>
-            <th>Total</th>
-            <th>Grade</th>
-        </tr>
-        <tr>
-            <td>201</td>
-            <td>Mathematics</td>
-            <td>100</td>
-            <td>48</td>
-            <td>XX</td>
-            <td>48</td>
-            <td>F</td>
-        </tr>
-        <tr>
-            <td>042</td>
-            <td>Physical Education</td>
-            <td>100</td>
-            <td>25</td>
-            <td>26</td>
-            <td>51</td>
-            <td>E</td>
-        </tr>
-        <tr>
-            <td>202</td>
-            <td>English</td>
-            <td>100</td>
-            <td>48</td>
-            <td>XX</td>
-            <td>48</td>
-            <td>F</td>
-        </tr>
-        <tr>
-            <th colspan="5">TOTAL</th>
-            <th>147</th>
-            <th></th>
-        </tr>
-    </table>
+  <table id="resultTable"></table>
 
-    <div class="pass">RESULT : PASS</div>
+  <div class="pass">RESULT : PASS</div>
 </div>
 
 <!-- ON DEMAND -->
 <div class="container hidden" id="ondemand">
-    <h2>On Demand Examination Result</h2>
-    <p>The On Demand Examination results are currently not available.</p>
-    <p>Please visit the portal again later for updates.</p>
+  <h2>On Demand Examination Result</h2>
+  <p>The On Demand Examination results are currently not available.</p>
 </div>
 
 <!-- RECHECK -->
 <div class="container hidden" id="recheck">
-    <h2>Recheck / Revaluation</h2>
-    <p>Rechecking and Revaluation results will be published shortly.</p>
-    <p>Please check back later.</p>
+  <h2>Recheck / Revaluation</h2>
+  <p>Rechecking and Revaluation results will be published shortly.</p>
 </div>
 
 <script>
-let correctAnswer = 0;
+let correctAnswer=0;
+
+const results={
+ "25649258":{
+   name:"MANPRIT PAL",
+   subjects:[
+     ["201","Mathematics",100,48,"XX",48,"F"],
+     ["042","Physical Education",100,25,26,51,"E"],
+     ["202","English",100,48,"XX",48,"F"]
+   ]
+ },
+ "25649257":{
+   name:"URVASHI RAY",
+   subjects:[
+     ["201","Hindi",100,48,"XX",48,"F"],
+     ["042","Physics",100,25,26,51,"E"],
+     ["202","English",100,48,"XX",48,"F"]
+   ]
+ }
+};
 
 function hideAll(){
-    ["home","form","result","ondemand","recheck"].forEach(id=>{
-        document.getElementById(id).classList.add("hidden");
-    });
+ ["home","form","result","ondemand","recheck"].forEach(i=>{
+   document.getElementById(i).classList.add("hidden");
+ });
 }
 
 function generateSum(){
-    let a = Math.floor(Math.random()*90)+10; // 10–99
-    let b = Math.floor(Math.random()*90)+10;
-    correctAnswer = a + b;
-    document.getElementById("question").innerText = a + " + " + b + " = ?";
+ let a=Math.floor(Math.random()*90)+10;
+ let b=Math.floor(Math.random()*90)+10;
+ correctAnswer=a+b;
+ document.getElementById("question").innerText=`${a} + ${b} = ?`;
 }
 
 function openPublic(){
-    hideAll();
-    document.getElementById("form").classList.remove("hidden");
-    generateSum();
+ hideAll();
+ document.getElementById("form").classList.remove("hidden");
+ generateSum();
 }
 
-function openOnDemand(){
-    hideAll();
-    document.getElementById("ondemand").classList.remove("hidden");
-}
-
-function openRecheck(){
-    hideAll();
-    document.getElementById("recheck").classList.remove("hidden");
-}
+function openOnDemand(){hideAll();document.getElementById("ondemand").classList.remove("hidden")}
+function openRecheck(){hideAll();document.getElementById("recheck").classList.remove("hidden")}
 
 function showResult(){
-    let roll = document.getElementById("roll").value;
-    let sum = document.getElementById("sum").value;
+ let roll=document.getElementById("roll").value;
+ let sum=Number(document.getElementById("sum").value);
 
-    if(roll==="25649258" && Number(sum)===correctAnswer){
-        hideAll();
-        document.getElementById("result").classList.remove("hidden");
-    }else{
-        document.getElementById("error").innerText =
-        "Incorrect Roll Number or Human Verification answer.";
-        generateSum();
-    }
+ if(results[roll] && sum===correctAnswer){
+   let data=results[roll];
+   document.getElementById("rname").innerText=data.name;
+   document.getElementById("rroll").innerText=roll;
+
+   let html=`<tr>
+   <th>Code</th><th>Subject</th><th>Max</th>
+   <th>Theory</th><th>Practical</th><th>Total</th><th>Grade</th></tr>`;
+   let total=0;
+
+   data.subjects.forEach(s=>{
+     html+=`<tr>
+     <td>${s[0]}</td><td>${s[1]}</td><td>${s[2]}</td>
+     <td>${s[3]}</td><td>${s[4]}</td><td>${s[5]}</td><td>${s[6]}</td></tr>`;
+     total+=s[5];
+   });
+
+   html+=`<tr><th colspan="5">TOTAL</th><th>${total}</th><th></th></tr>`;
+   document.getElementById("resultTable").innerHTML=html;
+
+   hideAll();
+   document.getElementById("result").classList.remove("hidden");
+ }else{
+   document.getElementById("error").innerText="Incorrect Roll Number or Human Verification.";
+   generateSum();
+ }
 }
 </script>
 
